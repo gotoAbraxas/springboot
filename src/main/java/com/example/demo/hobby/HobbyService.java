@@ -16,12 +16,21 @@ import java.util.List;
 public class HobbyService {
     private final MemberService memberService;
     public void save(HobbyRequest request){
-        Member byId = memberService.findById(request.getMemberId());
-        Hobby hobby = new Hobby(null, request.getName(), byId);
+        Hobby hobby = new Hobby(request.gethobbyId(), request.getName());
         Store.hobbies.add(hobby);
-        byId.getHobbies().add(hobby);
     }
-//    public List<Hobby> findAll(){
-//        return h
-//    }
+
+    public List<Hobby> findAll(){
+        return Store.hobbies;
+    }
+
+    public HobbyResponse findById(Integer id){
+        HobbyResponse hobbyResponse = Store.hobbies
+                .stream()
+                .filter(m -> m.getId().equals(id))
+                .findFirst()
+                .map(HobbyResponse::new).orElse(null);
+
+        return hobbyResponse;
+    }
 }

@@ -9,23 +9,26 @@ import java.util.Optional;
 
 @Service
 public class MemberService {
-    public List<MemberResponse> findAll(){
-        return Store.members
-                .stream()
-                .map(MemberResponse::new)
-                .toList();
+    public List<Member> findAll(){
+
+        return Store.members;
     }
-    public Member findById(Integer id){
+    public MemberResponse findById(Integer id){
 //        for (int i = 0; i < Store.members.size(); i++) {
 //                if(Store.members.get(i).getId() == id)
 //                    return Store.members.get(i);
 //        }
-        Optional<Member> first = Store.members
+//        Optional<Member> first = Store.members
+//                .stream()
+//                .filter(m -> m.getId().equals(id))
+//                .findFirst();
+//                Member member = first.orElseThrow(()->new MemberNotFound("사람을 못찾았어요.","findById",id));
+
+        MemberResponse member = Store.members
                 .stream()
                 .filter(m -> m.getId().equals(id))
-                .findFirst();
-                Member member = first.orElseThrow(()->new MemberNotFound("사람을 못찾았어요.","findById",id));
-
+                .findFirst()
+                .map(m -> new MemberResponse(m)).orElse(null);
 
         return member;
     }
@@ -36,11 +39,11 @@ public class MemberService {
         Store.members.remove(findById(id));
     }
     public MemberResponse update(Integer id, MemberRequest request){
-        Member byId = findById(id);
-//        byId.setAge(request.age());
-//        byId.setName(request.name());
-        MemberResponse memberResponse = new MemberResponse(byId);
+        MemberResponse byId = findById(id);
+        byId.setAge(request.age());
+        byId.setName(request.name());
+//        MemberResponse memberResponse = new MemberResponse(byId);
 
-        return memberResponse;
+        return byId;
     }
 }

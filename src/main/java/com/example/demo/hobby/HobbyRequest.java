@@ -2,21 +2,22 @@ package com.example.demo.hobby;
 
 import com.example.demo.member.Member;
 import com.example.demo.member.MemberService;
+import com.example.demo.store.Store;
 
 public class HobbyRequest {
     private final String name;
-    private final Integer memberId;
+    private final Integer hobbyId;
 
-    public HobbyRequest(String name, Integer memberId) {
+    public HobbyRequest(String name, Integer hobbyId) {
         this.name = name;
-        this.memberId = memberId;
+        this.hobbyId = hobbyId;
     }
 
     public String getName() {
         return name;
     }
 
-    public Integer getMemberId() {
-        return memberId;
+    public Integer gethobbyId() {
+        return hobbyId;
     }
 }

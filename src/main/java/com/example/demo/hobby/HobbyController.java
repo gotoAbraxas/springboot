@@ -1,10 +1,10 @@
 package com.example.demo.hobby;
 
+import com.example.demo.member.Member;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/hobbies")
@@ -14,5 +14,16 @@ public class HobbyController {
     @PostMapping
     public void save(@RequestBody HobbyRequest request){
         service.save(request);
+    }
+
+    @GetMapping
+    public List<Hobby> findAll(){
+        return service.findAll();
+    }
+
+    @GetMapping("{id}")
+    public HobbyResponse findById(@PathVariable("id") Integer id){
+
+        return service.findById(id);
     }
 }

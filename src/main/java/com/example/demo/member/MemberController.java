@@ -16,14 +16,14 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping
-    public List<MemberResponse> findAll(){
+    public List<Member> findAll(){
         return memberService.findAll();
     }
 
     @GetMapping("{id}")
     public MemberResponse findById(@PathVariable("id") Integer id){
 
-        return new MemberResponse(memberService.findById(id));
+        return memberService.findById(id);
     }
 
     @PostMapping
