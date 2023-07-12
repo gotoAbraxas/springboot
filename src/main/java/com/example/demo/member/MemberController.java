@@ -21,7 +21,7 @@ public class MemberController {
     }
 
     @GetMapping("{id}")
-    public MemberResponse findById(@PathVariable("id") Integer id){
+    public Member findById(@PathVariable("id") Integer id){
 
         return memberService.findById(id);
     }
@@ -32,7 +32,7 @@ public class MemberController {
         memberService.save(member.toEntity());
     }
     @PutMapping("{id}")
-    public MemberResponse update(@PathVariable("id") Integer id
+    public Member update(@PathVariable("id") Integer id
             , @RequestBody MemberRequest request){
 
         return memberService.update(id, request);

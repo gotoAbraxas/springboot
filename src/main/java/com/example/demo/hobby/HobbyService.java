@@ -24,13 +24,20 @@ public class HobbyService {
         return Store.hobbies;
     }
 
-    public HobbyResponse findById(Integer id){
-        HobbyResponse hobbyResponse = Store.hobbies
+    public Hobby findById(Integer id){
+        Hobby hobbyResponse = Store.hobbies
                 .stream()
                 .filter(m -> m.getId().equals(id))
                 .findFirst()
-                .map(HobbyResponse::new).orElse(null);
+                .orElse(null);
 
         return hobbyResponse;
+    }
+
+    public List<Hobby> findByName(String name){
+        List<Hobby> hobby = Store.hobbies.stream()
+                .filter(m -> m.getName().contains(name)).toList();
+
+        return hobby;
     }
 }

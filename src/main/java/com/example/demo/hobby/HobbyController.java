@@ -22,8 +22,14 @@ public class HobbyController {
     }
 
     @GetMapping("{id}")
-    public HobbyResponse findById(@PathVariable("id") Integer id){
+    public Hobby findById(@PathVariable("id") Integer id){
 
         return service.findById(id);
+    }
+
+    @GetMapping("/hobby")
+    public List<Hobby> findByName(@RequestParam("name")String name){
+
+        return service.findByName(name);
     }
 }

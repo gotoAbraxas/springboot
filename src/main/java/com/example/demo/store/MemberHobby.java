@@ -11,6 +11,6 @@ import lombok.Setter;
 import java.util.List;
 @Getter @AllArgsConstructor
 public class MemberHobby {
-    private MemberResponse member;
-    private HobbyResponse hobby;
+    private Member member;
+    private Hobby hobby;
 }
